@@ -28,7 +28,13 @@ const AdminRaces = () => {
 
                         races &&
                         races.map((race) =>
-                            <Card>
+                            <Link
+                                style={{display: "block", margin: "0", textDecoration: "none"}}
+                                to={`/races/${race.id}`}
+                                key={race.id}
+
+                            >
+                            <Card className={"raceCard"}>
                                 <Card.Body>
                                     <Card.Title>{race.name}</Card.Title>
                                     <Card.Text>
@@ -40,15 +46,10 @@ const AdminRaces = () => {
                                     <Card.Text>
                                         Duration: {race.duration} Minutes
                                     </Card.Text>
-                                    <Link
-                                        style={{display: "block", margin: "0"}}
-                                        to={`/races/${race.id}`}
-                                        key={race.id}
-                                    >
-                                        info
-                                    </Link>
+
                                 </Card.Body>
                             </Card>
+                            </Link>
                         )
                     }
                 </div>

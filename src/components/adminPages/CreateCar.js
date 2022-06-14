@@ -4,7 +4,7 @@ import RaceFacade from "../../facades/RaceFacade";
 import CarFacade from "../../facades/CarFacade";
 
 const CreateCar = () => {
-    const initialState = {name: "", brand: "", make: "", year: "", color:"", sponsor:""};
+    const initialState = {name: "", brand: "", make: "", year: "", color:"", sponsor:"" ,image:""};
     const [car, setCar] = useState(initialState);
 
 
@@ -51,6 +51,10 @@ const CreateCar = () => {
                         <Form.Group className="mb-3" controlId="sponsor">
                             <Form.Label>Sponsor</Form.Label>
                             <Form.Control required type="text" value={car.sponsor} placeholder="Sponsor"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="image">
+                            <Form.Label>Image url</Form.Label>
+                            <Form.Control required type="text" value={car.image} placeholder="Image"/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

@@ -4,3 +4,13 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
 }
+.raceCard{
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://cdn.hswstatic.com/gif/stock-car-race-tracks-1.jpg');
+    color:white;
+    background-size: cover;
+    min-height: 200px;
+}
+
+.card:hover{
+    opacity: 0.8;
+}

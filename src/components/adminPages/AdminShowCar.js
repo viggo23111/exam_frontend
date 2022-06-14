@@ -110,6 +110,10 @@ const AdminCar = () => {
                                 <Form.Label>Sponsor</Form.Label>
                                 <Form.Control required type="text" value={car.sponsor}/>
                             </Form.Group>
+                            <Form.Group className="mb-3" controlId="image">
+                                <Form.Label>Image url</Form.Label>
+                                <Form.Control required type="text" value={car.image}/>
+                            </Form.Group>
                             <Button type="submit" className="btn-primary"> Update</Button>
                         </Form>
                     </div>

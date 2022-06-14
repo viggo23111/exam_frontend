@@ -26,8 +26,14 @@ const AdminCars = () => {
 
                         cars &&
                         cars.map((car) =>
+                            <Link
+                                style={{display: "block", margin: "0",color:"black", textDecoration:"none"}}
+                                to={`/cars/${car.id}`}
+                                key={car.id}
+                            >
                             <Card>
                                 <Card.Body>
+                                    <Card.Img variant="top" src={car.image} style={{height:"150px"}}/>
                                     <Card.Title>{car.name}</Card.Title>
                                     <Card.Text>
                                         brand: {car.brand}
@@ -45,15 +51,9 @@ const AdminCars = () => {
                                         Sponsor: {car.sponsor}
                                     </Card.Text>
 
-                                    <Link
-                                        style={{display: "block", margin: "0"}}
-                                        to={`/cars/${car.id}`}
-                                        key={car.id}
-                                    >
-                                        info
-                                    </Link>
                                 </Card.Body>
                             </Card>
+                            </Link>
                         )
                     }
                 </div>
