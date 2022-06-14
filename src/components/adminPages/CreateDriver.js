@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Container, Form} from "react-bootstrap";
 import RaceFacade from "../../facades/RaceFacade";
 import CarFacade from "../../facades/CarFacade";
@@ -7,6 +7,10 @@ import DriverFacade from "../../facades/DriverFacade";
 const CreateDriver = () => {
     const initialState = {name: "", birthYear: "", experience: "", gender: "", userName:"", password:""};
     const [driver, setDriver] = useState(initialState);
+    let isError = false;
+    const errorAlertMsg = useRef(null);
+    const successAlertMsg = useRef(null);
+    const [errorMsg, setErrorMsg] = useState();
 
 
 
@@ -19,15 +23,47 @@ const CreateDriver = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        DriverFacade.createDriver(driver)
-        setDriver(initialState)
+        createUser()
+
     }
+
+    const createUser = () =>{
+        DriverFacade.createDriver(driver).then(response => {
+            if(response.code){
+                isError = true;
+                setErrorMsg(response.message)
+                console.log(errorMsg)
+                handleErrorAndSuccess()
+            }else{
+                handleErrorAndSuccess()
+            }
+        })
+    }
+
+    const handleErrorAndSuccess = () =>{
+        if (isError){
+            errorAlertMsg.current.style.display = 'block';
+            setTimeout(function() {errorAlertMsg.current.style.display = 'none'},3000)
+            isError = false;
+        }else {
+            setDriver(initialState);
+            successAlertMsg.current.style.display = 'block';
+            setTimeout(function() {successAlertMsg.current.style.display = 'none'},3000)
+        }
+    }
+
     return (
         <div>
             <Container className="shadow-lg p-5 mb-5 bg-white rounded mt-5">
                 <div className={"mb-5"}>
                     <h1>New driver</h1>
                     <Form onChange={handleInput} onSubmit={handleSubmit}>
+                        <div ref={errorAlertMsg} className="alert alert-danger" style={{display:"none"}}>
+                            <strong>{errorMsg}</strong>
+                        </div>
+                        <div ref={successAlertMsg} className="alert alert-success" style={{display:"none"}}>
+                            <strong>User has been created</strong>
+                        </div>
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Name</Form.Label>
                             <Form.Control required type="text" value={driver.name} placeholder="Name"/>

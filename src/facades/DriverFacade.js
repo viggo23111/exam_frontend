@@ -20,7 +20,7 @@ function RaceFacade() {
 
     const createDriver = (driver) => {
         const options = makeOptions("POST", driver, true); //True add's the token
-        fetch(URL + "/api/driver/", options).then(r => r.json());
+        return fetch(URL + "/api/driver/", options).then(r => r.json());
     }
 
     const updateDriver= (driver) => {

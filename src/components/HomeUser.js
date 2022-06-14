@@ -12,9 +12,6 @@ const Home = () => {
                 <div className={"mb-5"}>
                     <h1>Homepage user</h1>
                 </div>
-
-
-
             </Container>
         )
 
