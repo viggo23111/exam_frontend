@@ -8,8 +8,9 @@ import Admin3 from "./components/Admin3";
 import User1 from "./components/User1";
 import User2 from "./components/User2";
 import User3 from "./components/User3";
-import Admin1 from "./components/Admin1";
+import AdminCars from "./components/AdminCars";
 import './waves.css'
+import AdminShowCar from "./components/AdminShowCar";
 
 const rootElement = document.getElementById("root");
 const loggedIn = apiFacade.loggedIn()
@@ -19,7 +20,8 @@ render(
         <Routes>
             <Route exact="true" path="/" element={<App/>}>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/admin1" element={<Admin1/>}/>
+                <Route path="/cars" element={<AdminCars/>}/>
+                <Route path="cars/:carID" element={<AdminShowCar/>}/>
                 <Route path="/admin2" element={<Admin2/>}/>
                 <Route path="/admin3" element={<Admin3/>}/>
                 <Route path="/user1" element={<User1/>}/>
