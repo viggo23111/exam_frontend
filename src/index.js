@@ -2,7 +2,7 @@ import {render} from "react-dom";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import App from "./App";
 import Home from "./components/Home";
-import apiFacade from "./apiFacade";
+import apiFacade from "./facades/apiFacade";
 import Admin2 from "./components/Admin2";
 import Admin3 from "./components/Admin3";
 import User1 from "./components/User1";
@@ -11,6 +11,7 @@ import User3 from "./components/User3";
 import AdminCars from "./components/AdminCars";
 import './waves.css'
 import AdminShowCar from "./components/AdminShowCar";
+import MyRaces from "./components/driverPages/myRaces";
 
 const rootElement = document.getElementById("root");
 const loggedIn = apiFacade.loggedIn()
@@ -27,6 +28,7 @@ render(
                 <Route path="/user1" element={<User1/>}/>
                 <Route path="/user2" element={<User2/>}/>
                 <Route path="/user3" element={<User3/>}/>
+                <Route path="/myraces" element={<MyRaces/>}/>
 
             </Route>
             <Route

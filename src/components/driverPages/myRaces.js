@@ -1,22 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import RaceFacade from "../facades/RaceFacade";
-import "../card.css"
-import {Link} from "react-router-dom";
+import {Card, Container} from "react-bootstrap";
 
+import RaceFacade from "../../facades/RaceFacade";
+import DriverFacade from "../../facades/DriverFacade";
 
-const FrontPage = () => {
-    const [races, setRaces] = useState()
+const MyRaces = () => {
+    const [myRaces, setMyRaces] = useState()
 
     useEffect(() => {
-        RaceFacade.getRaces()
-            .then(races => setRaces(races))
+        DriverFacade.getRacesByDriverID(localStorage.getItem("userID"))
+            .then(races => setMyRaces(races))
             .catch((error) => {
                 alert(error.status)
                 console.log("error")
             })
 
-    }, [setRaces]);
+    }, [setMyRaces]);
 
 
     return (
@@ -26,8 +25,8 @@ const FrontPage = () => {
                 <div className={"cardList"}>
                     {
 
-                        races &&
-                        races.map((race) =>
+                        myRaces &&
+                        myRaces.map((race) =>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>{race.name}</Card.Title>
@@ -50,4 +49,4 @@ const FrontPage = () => {
     );
 };
 
-export default FrontPage;
+export default MyRaces;

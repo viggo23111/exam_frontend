@@ -6,8 +6,17 @@ import {LinkContainer} from 'react-router-bootstrap';
 const Header = ({logout}) => {
     const userType = localStorage.getItem("userType");
     let isAdmin = false;
+    let isUser = false;
+    let isDriver = false;
+
     if(userType === "admin"){
         isAdmin = true;
+    }
+    if(userType === "user"){
+        isUser = true;
+    }
+    if(userType === "driver"){
+        isDriver = true;
     }
 
 
@@ -46,7 +55,7 @@ const Header = ({logout}) => {
 
 
                         {
-                            !isAdmin &&
+                            isUser &&
 
                             <LinkContainer to="/">
                                 <Nav.Link>Home</Nav.Link>
@@ -54,7 +63,7 @@ const Header = ({logout}) => {
 
                         }
                         {
-                            !isAdmin &&
+                            isUser &&
 
                             <LinkContainer to="/user1">
                                 <Nav.Link>user1</Nav.Link>
@@ -62,7 +71,7 @@ const Header = ({logout}) => {
 
                         }
                         {
-                            !isAdmin &&
+                            isUser &&
 
                             <LinkContainer to="/user2">
                                 <Nav.Link>user2</Nav.Link>
@@ -70,10 +79,27 @@ const Header = ({logout}) => {
 
                         }
                         {
-                            !isAdmin &&
+                            isUser &&
 
                             <LinkContainer to="/user3">
                                 <Nav.Link>user3</Nav.Link>
+                            </LinkContainer>
+
+                        }
+
+                        {
+                            isDriver &&
+
+                            <LinkContainer to="/">
+                                <Nav.Link>Home</Nav.Link>
+                            </LinkContainer>
+
+                        }
+                        {
+                            isDriver &&
+
+                            <LinkContainer to="/myraces">
+                                <Nav.Link>My races</Nav.Link>
                             </LinkContainer>
 
                         }
