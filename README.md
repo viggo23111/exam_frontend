@@ -16,4 +16,5 @@ _root:_
 **On pc**
 _Project root:_
 - npm run build
--scp -r ./build/* root@$URL:/var/www/$project_name
+- scp -r ./build/* root@$URL:/var/www/$project_name
+- scp -r ./build/* root@vikhub.dk:/var/www/exam

@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
 
-const URL = "http://localhost:8080/ca2_war_exploded";
+const URL = "http://localhost:8080/exam_war_exploded";
 
 function handleHttpErrors(res) {
     if (!res.ok) {
