@@ -1,0 +1,50 @@
+p, h1, h2, h3,h4,h5,h5,h6{
+    font-family: 'Quantico', sans-serif;
+}
+
+.font-link{
+    font-family: 'Quantico', sans-serif;
+}
+.form-label{
+    font-family: 'Quantico', sans-serif;
+}
+input,select,textarea, td{
+    font-family: 'Quantico', sans-serif;
+}
+.btn-primary{
+    background-color: #0e3772;
+    border: none;
+    font-family: 'Quantico', sans-serif;
+}
+.btn-danger{
+    background-color: #760505 !important;
+}
+
+.btn-danger:hover{
+    background-color: red !important;
+}
+
+.btn-primary:hover{
+    background-color: #0e3772c2;
+    border: none;
+}
+
+.btn-primary:active{
+    background-color: #0e3772;
+    border: none;
+}
+
+.btn-danger:active{
+    background-color: #760505 !important;
+    border: none;
+}
+
+.btn-primary:focus{
+    background-color: #0e3772c2;
+    border: none;
+}
+
+.btn-danger:focus{
+    background-color: #760505;
+    border: none;
+}

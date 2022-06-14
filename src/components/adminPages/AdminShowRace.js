@@ -115,7 +115,7 @@ const AdminCars = () => {
                             </Form.Group>
 
                             <Button type="submit" className="btn-primary me-3">Update</Button>
-                            <Button type="button" className="btn-danger" onClick={handleShow}> Delete</Button>
+                            <Button className="btn-danger" onClick={handleShow}> Delete</Button>
 
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>

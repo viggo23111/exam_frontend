@@ -27,7 +27,7 @@ const MyRaces = () => {
 
                         myRaces &&
                         myRaces.map((race) =>
-                            <Card>
+                            <Card className={"raceCard"}>
                                 <Card.Body>
                                     <Card.Title>{race.name}</Card.Title>
                                     <Card.Text>

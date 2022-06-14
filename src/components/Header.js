@@ -87,24 +87,8 @@ const Header = ({logout}) => {
                         {
                             isUser &&
 
-                            <LinkContainer to="/user1">
-                                <Nav.Link>user1</Nav.Link>
-                            </LinkContainer>
-
-                        }
-                        {
-                            isUser &&
-
-                            <LinkContainer to="/user2">
-                                <Nav.Link>user2</Nav.Link>
-                            </LinkContainer>
-
-                        }
-                        {
-                            isUser &&
-
-                            <LinkContainer to="/user3">
-                                <Nav.Link>user3</Nav.Link>
+                            <LinkContainer to="/userraces">
+                                <Nav.Link>Races</Nav.Link>
                             </LinkContainer>
 
                         }
