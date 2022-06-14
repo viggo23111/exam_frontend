@@ -17,6 +17,8 @@ import CreateCar from "./components/adminPages/CreateCar";
 import CreateDriver from "./components/adminPages/CreateDriver";
 import AdminRaces from "./components/adminPages/AdminRaces";
 import AdminShowRace from "./components/adminPages/AdminShowRace";
+import AdminShowDrivers from "./components/adminPages/AdminShowDrivers";
+import AdminShowDriver from "./components/adminPages/AdminShowDriver";
 
 const rootElement = document.getElementById("root");
 const loggedIn = apiFacade.loggedIn()
@@ -30,6 +32,8 @@ render(
                 <Route path="races/:raceID" element={<AdminShowRace/>}/>
                 <Route path="/cars" element={<AdminCars/>}/>
                 <Route path="cars/:carID" element={<AdminShowCar/>}/>
+                <Route path="/drivers" element={<AdminShowDrivers/>}/>
+                <Route path="drivers/:driverID" element={<AdminShowDriver/>}/>
                 <Route path="/createrace" element={<CreateRace/>}/>
                 <Route path="/createcar" element={<CreateCar/>}/>
                 <Route path="/createdriver" element={<CreateDriver/>}/>

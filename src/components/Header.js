@@ -50,6 +50,14 @@ const Header = ({logout}) => {
                         }
                         {
                             isAdmin &&
+
+                            <LinkContainer to="/drivers">
+                                <Nav.Link>Drivers</Nav.Link>
+                            </LinkContainer>
+
+                        }
+                        {
+                            isAdmin &&
                             <LinkContainer to="/createrace">
                                 <Nav.Link>Create race</Nav.Link>
                             </LinkContainer>

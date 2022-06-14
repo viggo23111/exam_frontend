@@ -31,6 +31,10 @@ function CarFacade() {
         const options = makeOptions("PUT",false,true); //True add's the token
         return fetch(URL + "/api/car/add/"+carID+"/"+driverID, options).then(r => r.json());
     }
+    const updateCar= (car) => {
+        const options = makeOptions("PUT", car,true); //True add's the token
+        return fetch(URL + "/api/car/edit/", options).then(r => r.json());
+    }
 
 
 
@@ -56,7 +60,8 @@ function CarFacade() {
         getCarByID,
         createCar,
         removeDriverFromCar,
-        addDriverToCar
+        addDriverToCar,
+        updateCar
     }
 }
 

@@ -8,6 +8,11 @@ function RaceFacade() {
         return fetch(URL + "/api/driver/all", options).then(r =>r.json());
     }
 
+    const getDriverByID = (driverID) => {
+        const options = makeOptions("GET"); //True add's the token
+        return fetch(URL + "/api/driver/"+driverID, options).then(r =>r.json());
+    }
+
     const getRacesByDriverID = (driverID) => {
         const options = makeOptions("GET"); //True add's the token
         return fetch(URL + "/api/driver/" + driverID + "/races", options).then(r => r.json());
@@ -16,6 +21,11 @@ function RaceFacade() {
     const createDriver = (driver) => {
         const options = makeOptions("POST", driver, true); //True add's the token
         fetch(URL + "/api/driver/", options).then(r => r.json());
+    }
+
+    const updateDriver= (driver) => {
+        const options = makeOptions("PUT", driver,true); //True add's the token
+        return fetch(URL + "/api/driver/edit/", options).then(r => r.json());
     }
     const makeOptions = (method, body, addToken) => {
         var opts = {
@@ -36,7 +46,9 @@ function RaceFacade() {
     return {
         getDrivers,
         getRacesByDriverID,
-        createDriver
+        createDriver,
+        updateDriver,
+        getDriverByID
     }
 }
 
