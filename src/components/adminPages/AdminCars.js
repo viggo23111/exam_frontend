@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Card, Container} from "react-bootstrap";
 
-import CarFacade from "../facades/CarFacade";
+import CarFacade from "../../facades/CarFacade";
 import {Link} from "react-router-dom";
 
 

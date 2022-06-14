@@ -1,14 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Container, Form, Table} from "react-bootstrap";
 
-import CarFacade from "../facades/CarFacade";
+import CarFacade from "../../facades/CarFacade";
 import {useParams} from "react-router-dom";
+import RaceFacade from "../../facades/RaceFacade";
+import DriverFacade from "../../facades/DriverFacade";
 
 
 const AdminCars = () => {
     const parms = useParams();
     const [car, setCar] = useState()
     const [currentDrivers, setCurrentDrivers] = useState()
+    const [drivers, setDrivers] = useState()
+    const [newDriver, setNewDriver] = useState()
+
+    useEffect(() => {
+        DriverFacade.getDrivers().then(drivers => setDrivers(drivers));
+    }, [])
 
     useEffect(() => {
         CarFacade.getCarByID(parms.carID)
@@ -33,13 +41,26 @@ const AdminCars = () => {
 
 
     const handleRemove = (e) => {
-        const ownerID = e.target.value;
-        //HarbourFacade.removeOwnerFromBoat(boat.id, ownerID)
+        const driverID = e.target.value;
+        CarFacade.removeDriverFromCar(car.id, driverID)
         if (currentDrivers) {
-            const newDrivers = currentDrivers.filter((currentDriver) => currentDriver.id != ownerID);
+            const newDrivers = currentDrivers.filter((currentDriver) => currentDriver.id != driverID);
             setCurrentDrivers(newDrivers)
         }
     };
+
+    function handleChangeDriver(event) {
+        const target = event.target
+        const value = target.value
+        let selectedDriver = drivers.find(driver => driver.id === Number(value))
+        setNewDriver(selectedDriver);
+    }
+
+    function handleAddDriverSubmit(e) {
+        e.preventDefault()
+        CarFacade.addDriverToCar(car.id,newDriver.id)
+        setCurrentDrivers([...currentDrivers, newDriver])
+    }
 
 
     return (
@@ -82,6 +103,25 @@ const AdminCars = () => {
                 }
 
                 <h4 className="text-center">Drivers</h4>
+                {drivers &&
+                    <div>
+                        <h5>Add Driver</h5>
+                        <Form onChange={handleChangeDriver} onSubmit={handleAddDriverSubmit}>
+                            <Form.Group className="mb-3">
+                                <Form.Select id="carID">
+                                    <option value={""} selected disabled hidden>Select driver</option>
+                                    {
+                                        drivers.map((driver) => {
+                                                return <option key={driver.id}
+                                                               value={driver.id}>{driver.id} - {driver.name} - {driver.gender} - {driver.birthYear}  </option>
+                                            }
+                                        )}
+                                </Form.Select>
+                            </Form.Group>
+                            <Button type="submit" className="btn-primary"> Add</Button>
+                        </Form>
+                    </div>
+                }
                 {
                     currentDrivers &&
                     <div>

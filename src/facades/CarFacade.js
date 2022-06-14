@@ -2,7 +2,7 @@ import React from 'react';
 
 const URL = "http://localhost:8080/exam_war_exploded";
 
-function RaceFacade() {
+function CarFacade() {
     const getCars = () => {
         const options = makeOptions("GET"); //True add's the token
         return fetch(URL + "/api/car/all", options).then(r =>r.json());
@@ -17,6 +17,22 @@ function RaceFacade() {
         const options = makeOptions("GET"); //True add's the token
         return fetch(URL + "/api/car/"+carID, options).then(r =>r.json());
     }
+    const createCar = (car) => {
+        const options = makeOptions("POST", car, true); //True add's the token
+        fetch(URL + "/api/car/", options).then(r => r.json());
+    }
+
+    const removeDriverFromCar = (carID,driverID) => {
+        const options = makeOptions("PUT",false,true); //True add's the token
+        return fetch(URL + "/api/car/remove/"+carID+"/"+driverID, options).then(r => r.json());
+    }
+
+    const addDriverToCar = (carID,driverID) => {
+        const options = makeOptions("PUT",false,true); //True add's the token
+        return fetch(URL + "/api/car/add/"+carID+"/"+driverID, options).then(r => r.json());
+    }
+
+
 
     const makeOptions = (method, body,addToken) => {
         var opts = {
@@ -37,9 +53,12 @@ function RaceFacade() {
     return {
         getCars,
         getDriversByCarID,
-        getCarByID
+        getCarByID,
+        createCar,
+        removeDriverFromCar,
+        addDriverToCar
     }
 }
 
-const facade = RaceFacade();
+const facade = CarFacade();
 export default facade;

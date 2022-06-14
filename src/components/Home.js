@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {Container} from "react-bootstrap";
-import HomeAdmin from "./HomeAdmin";
+import HomeAdmin from "./adminPages/HomeAdmin";
 import HomeUser from "./HomeUser";
 import HomeDriver from "./driverPages/HomeDriver";
 

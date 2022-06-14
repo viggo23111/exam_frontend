@@ -35,6 +35,14 @@ const Header = ({logout}) => {
                         {
                             isAdmin &&
 
+                            <LinkContainer to="/races">
+                                <Nav.Link>Races</Nav.Link>
+                            </LinkContainer>
+
+                        }
+                        {
+                            isAdmin &&
+
                             <LinkContainer to="/cars">
                                 <Nav.Link>Cars</Nav.Link>
                             </LinkContainer>
@@ -42,14 +50,20 @@ const Header = ({logout}) => {
                         }
                         {
                             isAdmin &&
-                            <LinkContainer to="/admin2">
-                                <Nav.Link>admin2</Nav.Link>
+                            <LinkContainer to="/createrace">
+                                <Nav.Link>Create race</Nav.Link>
                             </LinkContainer>
                         }
                         {
                             isAdmin &&
-                            <LinkContainer to="/admin3">
-                                <Nav.Link>admin3</Nav.Link>
+                            <LinkContainer to="/createcar">
+                                <Nav.Link>Create car</Nav.Link>
+                            </LinkContainer>
+                        }
+                        {
+                            isAdmin &&
+                            <LinkContainer to="/createdriver">
+                                <Nav.Link>Create driver</Nav.Link>
                             </LinkContainer>
                         }
 
