@@ -22,7 +22,7 @@ const AdminRaces = () => {
     return (
         <Container className="shadow-lg p-5 mb-5 bg-white rounded mt-5">
             <div className={"mb-5"}>
-                <h2 className={"text-center"}>Races</h2>
+                <h3 className={"text-center"}>Races</h3>
                 <div className={"cardList"}>
                     {
 

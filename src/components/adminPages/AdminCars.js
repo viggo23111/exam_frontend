@@ -20,7 +20,7 @@ const AdminCars = () => {
     return (
         <Container className="shadow-lg p-5 mb-5 bg-white rounded mt-5">
             <div className={"mb-5"}>
-                <h2 className={"text-center"}>Cars</h2>
+                <h3 className={"text-center"}>Cars</h3>
                 <div className={"cardList"}>
                     {
 
@@ -31,9 +31,10 @@ const AdminCars = () => {
                                 to={`/cars/${car.id}`}
                                 key={car.id}
                             >
-                            <Card>
-                                <Card.Body>
+                            <Card style={{color:"white", backgroundColor:"#333333"}} className={"cars"}>
+                                <Card.Body style={{ padding:"0"}}>
                                     <Card.Img variant="top" src={car.image} style={{height:"150px"}}/>
+                                    <div className={"p-2"}>
                                     <Card.Title>{car.name}</Card.Title>
                                     <Card.Text>
                                         brand: {car.brand}
@@ -50,7 +51,7 @@ const AdminCars = () => {
                                     <Card.Text>
                                         Sponsor: {car.sponsor}
                                     </Card.Text>
-
+                                    </div>
                                 </Card.Body>
                             </Card>
                             </Link>

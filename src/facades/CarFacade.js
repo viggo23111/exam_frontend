@@ -1,6 +1,8 @@
 import React from 'react';
+import settings from "../Settings";
 
-const URL = "http://localhost:8080/exam_war_exploded";
+
+const URL = settings.getUrl();
 
 function CarFacade() {
     const getCars = () => {

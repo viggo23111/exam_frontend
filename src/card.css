@@ -14,3 +14,9 @@
 .card:hover{
     opacity: 0.8;
 }
+
+.cars:hover{
+    opacity: 0.8;
+    background-color: #15427c !important;
+    transition: all 0.3s ease-in;
+}

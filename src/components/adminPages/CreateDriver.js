@@ -103,7 +103,6 @@ const CreateDriver = () => {
                             Create
                         </Button>
                     </Form>
-                    {JSON.stringify(driver)}
                 </div>
             </Container>
         </div>

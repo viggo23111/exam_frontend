@@ -175,8 +175,9 @@ const AdminCar = () => {
                                             style={{display: "block", margin: "0"}}
                                             to={`/drivers/${currentDriver.id}`}
                                             key={currentDriver.id}
-                                        >
+                                        > <Button className="float-end">
                                             info
+                                        </Button>
                                         </Link></td>
                                         <td><Button value={currentDriver.id} type="button" className="btn-danger float-end"
                                                     onClick={handleRemove}> Remove</Button></td>

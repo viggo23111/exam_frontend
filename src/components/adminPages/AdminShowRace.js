@@ -35,7 +35,7 @@ const AdminCars = () => {
 
     useEffect(() => {
         RaceFacade.getCarsByRaceID(parms.raceID)
-            .then(currentCars=> setCurrentCars(currentCars))
+            .then(currentCars => setCurrentCars(currentCars))
             .catch((error) => {
                 alert(error.status)
                 console.log("error")
@@ -46,7 +46,6 @@ const AdminCars = () => {
     useEffect(() => {
         CarFacade.getCars().then(cars => setCars(cars));
     }, [])
-
 
 
     const handleRemove = (e) => {
@@ -69,7 +68,9 @@ const AdminCars = () => {
         e.preventDefault();
         RaceFacade.updateRace(race)
         successAlertMsg.current.style.display = 'block';
-        setTimeout(function() {successAlertMsg.current.style.display = 'none'},3000)
+        setTimeout(function () {
+            successAlertMsg.current.style.display = 'none'
+        }, 3000)
     }
 
     function handleChangeCars(event) {
@@ -81,10 +82,11 @@ const AdminCars = () => {
 
     function handleAddCarSubmit(e) {
         e.preventDefault()
-        RaceFacade.addCarToRace(race.id,newCar.id)
+        RaceFacade.addCarToRace(race.id, newCar.id)
         setCurrentCars([...currentCars, newCar])
     }
-    function deleteRace(e){
+
+    function deleteRace(e) {
         e.preventDefault()
         RaceFacade.deleteRace(race.id)
         navigate('/');
@@ -100,7 +102,7 @@ const AdminCars = () => {
                         <h3 className={"text-center"}>Race# {race.id}</h3>
 
                         <Form onChange={handleInput} onSubmit={handleSubmit}>
-                            <div ref={successAlertMsg} className="alert alert-success" style={{display:"none"}}>
+                            <div ref={successAlertMsg} className="alert alert-success" style={{display: "none"}}>
                                 <strong>Race have been updated</strong>
                             </div>
                             <Form.Group className="mb-3" controlId="name">
@@ -193,13 +195,15 @@ const AdminCars = () => {
                                         <td>{currentCar.year}</td>
                                         <td>{currentCar.color}</td>
                                         <td>{currentCar.sponsor}</td>
-                                        <td><Link
-                                            style={{display: "block", margin: "0"}}
-                                            to={`/cars/${currentCar.id}`}
-                                            key={currentCar.id}
-                                        >
-                                            info
-                                        </Link></td>
+                                        <td>
+                                            <Link style={{display: "block", margin: "0"}}
+                                                  to={`/cars/${currentCar.id}`}
+                                                  key={currentCar.id}>
+                                                <Button className="float-end">
+                                                    info
+                                                </Button>
+                                            </Link>
+                                        </td>
 
                                         <td><Button value={currentCar.id} type="button" className="btn-danger float-end"
                                                     onClick={handleRemove}> Remove</Button></td>
@@ -210,9 +214,6 @@ const AdminCars = () => {
                         </Table>
                     </div>
                 }
-
-
-
 
 
             </div>

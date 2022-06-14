@@ -1,6 +1,6 @@
 import React from 'react';
-
-const URL = "http://localhost:8080/exam_war_exploded";
+import settings from "../Settings";
+const URL = settings.getUrl();
 
 function RaceFacade() {
     const getDrivers = () => {
