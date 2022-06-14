@@ -1,18 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Container, Form, Table} from "react-bootstrap";
+import {Button, Container, Form, Modal, Table} from "react-bootstrap";
 
 import CarFacade from "../../facades/CarFacade";
 import {Link, useParams} from "react-router-dom";
 import RaceFacade from "../../facades/RaceFacade";
 import DriverFacade from "../../facades/DriverFacade";
-
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 const AdminCars = () => {
+    const navigate = useNavigate();
     const parms = useParams();
     const [race, setRace] = useState()
     const [currentCars, setCurrentCars] = useState()
     const [cars, setCars] = useState()
     const [newCar, setNewCar] = useState()
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         RaceFacade.getRaceByID(parms.raceID)
@@ -37,6 +43,7 @@ const AdminCars = () => {
     useEffect(() => {
         CarFacade.getCars().then(cars => setCars(cars));
     }, [])
+
 
 
     const handleRemove = (e) => {
@@ -72,6 +79,12 @@ const AdminCars = () => {
         RaceFacade.addCarToRace(race.id,newCar.id)
         setCurrentCars([...currentCars, newCar])
     }
+    function deleteRace(e){
+        e.preventDefault()
+        RaceFacade.deleteRace(race.id)
+        navigate('/');
+
+    }
 
 
     return (
@@ -101,7 +114,23 @@ const AdminCars = () => {
                                 <Form.Control required type="text" value={race.startDate}/>
                             </Form.Group>
 
-                            <Button type="submit" className="btn-primary"> Update</Button>
+                            <Button type="submit" className="btn-primary me-3">Update</Button>
+                            <Button type="button" className="btn-danger" onClick={handleShow}> Delete</Button>
+
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Delete race: {race.name}</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are your sure that you want to delete?</Modal.Body>
+                                <Modal.Footer>
+                                    <Button type="button" className="btn-secondary" onClick={handleClose}>
+                                        Cancel
+                                    </Button>
+                                    <Button type="button" className="btn-danger" onClick={deleteRace}>
+                                        Delete
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </Form>
                     </div>
                 }

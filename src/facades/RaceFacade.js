@@ -36,6 +36,11 @@ function RaceFacade() {
         return fetch(URL + "/api/race/"+raceID+"/cars", options).then(r =>r.json());
     }
 
+    const deleteRace = (raceID) => {
+        const options = makeOptions("DELETE",false,true); //True add's the token
+        return fetch(URL + "/api/race/delete/"+raceID, options).then(r =>r.json());
+    }
+
 
 
     const makeOptions = (method, body,addToken) => {
@@ -61,7 +66,8 @@ function RaceFacade() {
         updateRace,
         removeCarFromRace,
         getCarsByRaceID,
-        addCarToRace
+        addCarToRace,
+        deleteRace
     }
 }
 
