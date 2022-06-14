@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Button, Container, Form, Table} from "react-bootstrap";
 
 import CarFacade from "../../facades/CarFacade";
@@ -7,12 +7,15 @@ import RaceFacade from "../../facades/RaceFacade";
 import DriverFacade from "../../facades/DriverFacade";
 
 
+
 const AdminCar = () => {
     const parms = useParams();
     const [car, setCar] = useState()
     const [currentDrivers, setCurrentDrivers] = useState()
     const [drivers, setDrivers] = useState()
     const [newDriver, setNewDriver] = useState()
+
+    const successAlertMsg = useRef(null);
 
     useEffect(() => {
         DriverFacade.getDrivers().then(drivers => setDrivers(drivers));
@@ -72,6 +75,8 @@ const AdminCar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         CarFacade.updateCar(car)
+        successAlertMsg.current.style.display = 'block';
+        setTimeout(function() {successAlertMsg.current.style.display = 'none'},3000)
     }
 
 
@@ -84,6 +89,9 @@ const AdminCar = () => {
                         <h3 className={"text-center"}>Car# {car.id}</h3>
 
                         <Form onChange={handleInput} onSubmit={handleSubmit}>
+                            <div ref={successAlertMsg} className="alert alert-success" style={{display:"none"}}>
+                                <strong>Car have been updated</strong>
+                            </div>
                             <Form.Group className="mb-3" controlId="name">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control required type="text" value={car.name}

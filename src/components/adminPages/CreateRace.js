@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Container, Form} from "react-bootstrap";
 import RaceFacade from "../../facades/RaceFacade";
+
 
 const CreateRace = () => {
     const initialState = {name: "", location: "", startDate: "", duration: ""};
     const [race, setRace] = useState(initialState);
+    const successAlertMsg = useRef(null);
 
 
 
@@ -18,6 +20,8 @@ const CreateRace = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         RaceFacade.createRace(race)
+        successAlertMsg.current.style.display = 'block';
+        setTimeout(function() {successAlertMsg.current.style.display = 'none'},3000)
         setRace(initialState)
     }
     return (
@@ -26,6 +30,9 @@ const CreateRace = () => {
                 <div className={"mb-5"}>
                     <h1>New race</h1>
                     <Form onChange={handleInput} onSubmit={handleSubmit}>
+                        <div ref={successAlertMsg} className="alert alert-success" style={{display:"none"}}>
+                            <strong>Race has been created</strong>
+                        </div>
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Name</Form.Label>
                             <Form.Control required type="text" value={race.name} placeholder="Name"/>
@@ -36,7 +43,7 @@ const CreateRace = () => {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="startDate">
                             <Form.Label>Start date</Form.Label>
-                            <Form.Control required type="text" value={race.startDate} placeholder="Date"/>
+                            <Form.Control required type="date" value={race.startDate} placeholder="Date"/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="duration">
                             <Form.Label>Duration in minutes</Form.Label>

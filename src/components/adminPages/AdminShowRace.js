@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Button, Container, Form, Modal, Table} from "react-bootstrap";
 
 import CarFacade from "../../facades/CarFacade";
@@ -7,6 +7,7 @@ import RaceFacade from "../../facades/RaceFacade";
 import DriverFacade from "../../facades/DriverFacade";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
+
 const AdminCars = () => {
     const navigate = useNavigate();
     const parms = useParams();
@@ -14,6 +15,8 @@ const AdminCars = () => {
     const [currentCars, setCurrentCars] = useState()
     const [cars, setCars] = useState()
     const [newCar, setNewCar] = useState()
+
+    const successAlertMsg = useRef(null);
 
     const [show, setShow] = useState(false);
 
@@ -65,6 +68,8 @@ const AdminCars = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         RaceFacade.updateRace(race)
+        successAlertMsg.current.style.display = 'block';
+        setTimeout(function() {successAlertMsg.current.style.display = 'none'},3000)
     }
 
     function handleChangeCars(event) {
@@ -95,6 +100,9 @@ const AdminCars = () => {
                         <h3 className={"text-center"}>Race# {race.id}</h3>
 
                         <Form onChange={handleInput} onSubmit={handleSubmit}>
+                            <div ref={successAlertMsg} className="alert alert-success" style={{display:"none"}}>
+                                <strong>Race have been updated</strong>
+                            </div>
                             <Form.Group className="mb-3" controlId="name">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control required type="text" value={race.name}

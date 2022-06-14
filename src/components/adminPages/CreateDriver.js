@@ -5,7 +5,7 @@ import CarFacade from "../../facades/CarFacade";
 import DriverFacade from "../../facades/DriverFacade";
 
 const CreateDriver = () => {
-    const initialState = {name: "", birthYear: "", experience: "", gender: "", userName:"", password:""};
+    const initialState = {name: "", birthYear: "", experience: "", gender: "Male", userName:"", password:""};
     const [driver, setDriver] = useState(initialState);
     let isError = false;
     const errorAlertMsg = useRef(null);
@@ -62,7 +62,7 @@ const CreateDriver = () => {
                             <strong>{errorMsg}</strong>
                         </div>
                         <div ref={successAlertMsg} className="alert alert-success" style={{display:"none"}}>
-                            <strong>User has been created</strong>
+                            <strong>Driver has been created</strong>
                         </div>
                         <Form.Group className="mb-3" controlId="name">
                             <Form.Label>Name</Form.Label>
@@ -78,10 +78,15 @@ const CreateDriver = () => {
                             <Form.Label>Experience</Form.Label>
                             <Form.Control required type="text" value={driver.experience} placeholder="Experience"/>
                         </Form.Group>
-
                         <Form.Group className="mb-3" controlId="gender">
-                            <Form.Label>Gender</Form.Label>
-                            <Form.Control required type="text" value={driver.gender} placeholder="Gender"/>
+                            <Form.Label>Select gender</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={driver.gender} >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Custom">Custom</option>
+                            </Form.Control>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="userName">
@@ -98,6 +103,7 @@ const CreateDriver = () => {
                             Create
                         </Button>
                     </Form>
+                    {JSON.stringify(driver)}
                 </div>
             </Container>
         </div>
