@@ -47,7 +47,9 @@ const AdminShowDrivers = () => {
                                             to={`/drivers/${driver.id}`}
                                             key={driver.id}
                                         >
-                                            info
+                                            <Button className="float-end">
+                                                info
+                                            </Button>
                                         </Link></td>
                                     </tr>
                                 )
